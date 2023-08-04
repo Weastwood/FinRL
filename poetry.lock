@@ -378,7 +378,7 @@ tests-no-zope = ["cloudpickle", "hypothesis", "mypy (>=1.1.1)", "pympler", "pyte
 name = "autorom"
 version = "0.6.1"
 description = "Automated installation of Atari ROMs for Gym/ALE-Py"
-optional = false
+optional = true
 python-versions = ">=3.7"
 files = [
     {file = "AutoROM-0.6.1-py3-none-any.whl", hash = "sha256:e734fdad23dc8e48897de013803eba3c9e109e028d5463a4817346f7f669604f"},
@@ -397,7 +397,7 @@ accept-rom-license = ["AutoROM.accept-rom-license"]
 name = "autorom-accept-rom-license"
 version = "0.6.1"
 description = "Automated installation of Atari ROMs for Gym/ALE-Py"
-optional = false
+optional = true
 python-versions = ">=3.7"
 files = [
     {file = "AutoROM.accept-rom-license-0.6.1.tar.gz", hash = "sha256:0c905a708d634a076f686802f672817d3585259ce3be0bde8713a4fb59e3159e"},
