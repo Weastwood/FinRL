@@ -150,7 +150,7 @@ frozenlist = ">=1.1.0"
 name = "ale-py"
 version = "0.8.1"
 description = "The Arcade Learning Environment (ALE) - a platform for AI research."
-optional = false
+optional = true
 python-versions = ">=3.7"
 files = [
     {file = "ale_py-0.8.1-cp310-cp310-macosx_10_15_x86_64.whl", hash = "sha256:b2aa2f69a4169742800615970efe6914fa856e33eaf7fa9133c0e06a617a80e2"},
