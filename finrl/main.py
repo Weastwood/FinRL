@@ -22,12 +22,12 @@ from finrl.meta.env_stock_trading.env_stocktrading_np import StockTradingEnv
 
 # construct environment
 
-# try:
-#     from finrl.config_private import ALPACA_API_KEY, ALPACA_API_SECRET
-# except ImportError:
-#     raise FileNotFoundError(
-#         "Please set your own ALPACA_API_KEY and ALPACA_API_SECRET in config_private.py"
-#     )
+try:
+    from finrl.config_private import ALPACA_API_KEY, ALPACA_API_SECRET
+except ImportError:
+    raise FileNotFoundError(
+        "Please set your own ALPACA_API_KEY and ALPACA_API_SECRET in config_private.py"
+    )
 
 
 def build_parser():
@@ -50,6 +50,10 @@ def check_and_make_directories(directories: list[str]):
 
 
 def main() -> int:
+    API_BASE_URL = 'https://paper-api.alpaca.markets'
+    data_url = 'wss://data.alpaca.markets'
+    API_KEY ="PKMDAXRC78RE4TDKERJG"
+    API_SECRET = "VI4ZMDGQkh8cMIxc3ZZDXfuojk32whvVQM4PGTxj"
     parser = build_parser()
     options = parser.parse_args()
     check_and_make_directories(
@@ -58,18 +62,20 @@ def main() -> int:
 
     if options.mode == "train":
         from finrl import train
-
+        try:
+            from finrl.config_private import ALPACA_API_KEY, ALPACA_API_SECRET
+        except ImportError:
+            raise FileNotFoundError(
+                "Please set your own ALPACA_API_KEY and ALPACA_API_SECRET in config_private.py"
+            )
         env = StockTradingEnv
-
         # demo for elegantrl
-        kwargs = (
-            {}
-        )  # in current meta, with respect yahoofinance, kwargs is {}. For other data sources, such as joinquant, kwargs is not empty
+        kwargs = ({})  # in current meta, with respect yahoofinance, kwargs is {}. For other data sources, such as joinquant, kwargs is not empty
         train(
             start_date=TRAIN_START_DATE,
             end_date=TRAIN_END_DATE,
             ticker_list=DOW_30_TICKER,
-            data_source="yahoofinance",
+            data_source="alpaca",
             time_interval="1D",
             technical_indicator_list=INDICATORS,
             drl_lib="elegantrl",
@@ -78,10 +84,19 @@ def main() -> int:
             cwd="./test_ppo",
             erl_params=ERL_PARAMS,
             break_step=1e5,
+            API_KEY=ALPACA_API_KEY, 
+            API_SECRET=ALPACA_API_SECRET,
+            API_BASE_URL=data_url,
             kwargs=kwargs,
         )
     elif options.mode == "test":
         from finrl import test
+        try:
+            from finrl.config_private import ALPACA_API_KEY, ALPACA_API_SECRET
+        except ImportError:
+            raise FileNotFoundError(
+                "Please set your own ALPACA_API_KEY and ALPACA_API_SECRET in config_private.py"
+            )
 
         env = StockTradingEnv
 
@@ -93,7 +108,7 @@ def main() -> int:
             start_date=TEST_START_DATE,
             end_date=TEST_END_DATE,
             ticker_list=DOW_30_TICKER,
-            data_source="yahoofinance",
+            data_source="alpaca",
             time_interval="1D",
             technical_indicator_list=INDICATORS,
             drl_lib="elegantrl",
