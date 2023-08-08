@@ -20,16 +20,6 @@ from finrl.config import TRAINED_MODEL_DIR
 from finrl.config_tickers import DOW_30_TICKER
 from finrl.meta.env_stock_trading.env_stocktrading_np import StockTradingEnv
 
-# construct environment
-
-try:
-    from finrl.config_private import ALPACA_API_KEY, ALPACA_API_SECRET
-except ImportError:
-    raise FileNotFoundError(
-        "Please set your own ALPACA_API_KEY and ALPACA_API_SECRET in config_private.py"
-    )
-
-
 def build_parser():
     parser = ArgumentParser()
     parser.add_argument(
@@ -52,8 +42,6 @@ def check_and_make_directories(directories: list[str]):
 def main() -> int:
     API_BASE_URL = 'https://paper-api.alpaca.markets'
     data_url = 'wss://data.alpaca.markets'
-    API_KEY ="PKMDAXRC78RE4TDKERJG"
-    API_SECRET = "VI4ZMDGQkh8cMIxc3ZZDXfuojk32whvVQM4PGTxj"
     parser = build_parser()
     options = parser.parse_args()
     check_and_make_directories(
