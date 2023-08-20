@@ -1,4 +1,4 @@
-FROM stablebaselines/rl-baselines3-zoo
+FROM dustynv/l4t-ml:r35.4.1
 
 WORKDIR /src
 
