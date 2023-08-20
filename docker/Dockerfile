@@ -1,12 +1,8 @@
 FROM dustynv/l4t-ml:r35.4.1
-
-WORKDIR /src
-
-COPY requirements.txt .
+RUN git clone https://github.com/Weastwood/FinRL.git
+WORKDIR /FinRL
 
 RUN pip install -r requirements.txt -I
-
-RUN pip install jupyterlab
 
 # Add Tini. Tini operates as a process subreaper for jupyter. This prevents kernel crashes.
 ENV TINI_VERSION v0.6.0
