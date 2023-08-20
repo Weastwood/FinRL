@@ -1,6 +1,7 @@
 FROM dustynv/l4t-ml:r35.4.1
 RUN git clone https://github.com/Weastwood/FinRL.git
 WORKDIR /FinRL
+RUN git pull
 
 RUN pip install -r requirements.txt -I
 
