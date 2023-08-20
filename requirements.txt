@@ -8,10 +8,10 @@ importlib-metadata==4.13.0
 jqdatasdk
 lz4
 # plot
-matplotlib
+$matplotlib
 # data handling
-numpy>=1.17.3
-pandas>=1.1.5
+#numpy>=1.17.3
+#pandas>=1.1.5
 
 #hooks
 pre-commit
